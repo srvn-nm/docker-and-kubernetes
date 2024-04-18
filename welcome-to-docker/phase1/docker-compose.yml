@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+  elasticsearch:
+    image: elasticsearch:8.12.2
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - ELASTIC_PASSWORD=12345
+      - xpack.security.enabled=true
+      - xpack.security.enrollment.enabled=true
+      - xpack.security.http.ssl.enabled=true
+      # - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+      # - "9300:9300"
+    deploy:
+      resources: 
+        limits: 
+          # cpus: "0.50"  # Use at most 50% of one CPU core
+          memory: 4G  # Use at most 4 GB of RAM
+  #   volumes:
+  #     - elasticsearch_data:/usr/share/elasticsearch/data
+
+  # kibana:
+  #   image: kibana:8.12.2
+  #   container_name: kibana
+  #   environment:
+  #     - ELASTICSEARCH_HOSTS=https://elasticsearch:9200
+  #     - ELASTICSEARCH_USERNAME=elastic
+  #     - ELASTICSEARCH_PASSWORD=12345
+  #   ports:
+  #     - "5601:5601"
+  #   depends_on:
+  #     - elasticsearch
+
+  flask_app:
+    build: "/"
+    image: flask:latest
+    ports:
+      - "5000:5000"
+    depends_on:
+      - redis
+      - elasticsearch
+
+# volumes:
+#   elasticsearch_data:
+
+# networks:
+#   default:
+#     driver: bridge
