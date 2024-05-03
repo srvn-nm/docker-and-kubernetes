@@ -8,7 +8,7 @@ ELASTIC_PASSWORD = '12345'
     
 class ElasticSearchService:
     def __init__(self):
-        print(f"connected to elasticsearch service")
+        print("connected to elasticsearch service")
 
     def search(self, name):
         
