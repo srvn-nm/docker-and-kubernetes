@@ -1,4 +1,16 @@
 {
   "DockerRun.DisableDockerrc": true,
-  "cSpell.words": ["dcaa", "ddjsn", "imdb", "jsonify", "mshea", "rapidapi"]
+  "cSpell.words": [
+    "dcaa",
+    "ddjsn",
+    "hadolint",
+    "imdb",
+    "isort",
+    "jsonify",
+    "mshea",
+    "rapidapi",
+    "runtimes",
+    "terrascan",
+    "trivy"
+  ]
 }
