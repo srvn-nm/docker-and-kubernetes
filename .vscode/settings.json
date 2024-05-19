@@ -9,8 +9,10 @@
     "jsonify",
     "mshea",
     "rapidapi",
+    "redispvc",
     "runtimes",
     "terrascan",
     "trivy"
-  ]
+  ],
+  "python.analysis.extraPaths": ["./welcome-to-docker/phase_final"]
 }
